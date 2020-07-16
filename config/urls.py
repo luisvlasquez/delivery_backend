@@ -18,12 +18,13 @@ from django.urls import path,include
 from django.conf import settings
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
+from rest_framework import routers
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('',include(('delivery.users.urls','users'),namespace='users'))
 ]
 
 

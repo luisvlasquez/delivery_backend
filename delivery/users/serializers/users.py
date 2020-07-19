@@ -1,7 +1,7 @@
 """ Users serilizers """
 
 # Django
-
+from django.conf import settings
 from django.contrib.auth import password_validation, authenticate
 from django.core.validators import RegexValidator
 
@@ -9,10 +9,12 @@ from django.core.validators import RegexValidator
 # Django Rest Framework
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
+from rest_framework.authtoken.models import Token
 
 
 #models
 from delivery.users.models import  User
+
 
 
 
@@ -27,8 +29,8 @@ class UserModelSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'email',
-            'phone_number',
-
+            'phone_number'
+           
         )
 
 
@@ -69,7 +71,8 @@ class UserRegisterSerializer(serializers.Serializer):
 
     def create(self,data):
         data.pop('password2')
-        user = User.objects.create_user(**data)
+        username = data['phone_number']
+        user = User.objects.create_user(username,**data)
         return user
 
 
@@ -89,5 +92,7 @@ class UserLoginSerializer(serializers.Serializer):
         self.context['user'] = user
         return data
 
-    # me falta crear un token ya que es obligatorio al loguearse 
-    
+    def create(self, data):
+        """Generate or retrieve new token."""
+        token, created = Token.objects.get_or_create(user=self.context['user'])
+        return self.context['user'], token.key

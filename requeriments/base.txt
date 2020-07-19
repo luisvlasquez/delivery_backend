@@ -6,4 +6,6 @@ Pillow==7.2.0  # https://github.com/python-pillow/Pillow
 
 
 
+# JWT 
 
+jwcrypto==0.7

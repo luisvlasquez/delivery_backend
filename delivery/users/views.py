@@ -50,5 +50,12 @@ class UserViewSet(mixins.RetrieveModelMixin,mixins.UpdateModelMixin,viewsets.Gen
         user = serializer.save()
         data = UserModelSerializer(user).data
         return Response(data, status=status.HTTP_201_CREATED)
+    @action(detail=False, methods=['get'])
+    def listUser(self, request):
+        data= {
+            'nombre' : 'Lisa',
+            'apellido': 'simpsom'
+        }
+        return Response(data, status=status.HTTP_200_OK)
        
      

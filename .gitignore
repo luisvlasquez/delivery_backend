@@ -1,0 +1,10 @@
+
+
+
+### Project template
+
+delivery/media/
+
+.pytest_cache/
+
+__pycache__/

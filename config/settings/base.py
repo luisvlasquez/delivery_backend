@@ -20,7 +20,6 @@ ROOT_DIR = (
 
 # here we will put all the routes of each application 
 APPS_DIR = ROOT_DIR.path("delivery")
-print(APPS_DIR)
 
 env = environ.Env()
 
@@ -39,7 +38,7 @@ INSTALLED_APPS = [
     'delivery.users',
     'rest_framework',
     'rest_framework.authtoken',
-
+    'delivery.restaurant',
 ]
 
 MIDDLEWARE = [
@@ -154,6 +153,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(APPS_DIR, 'static/')
+
 
 # Media Files
 MEDIA_ROOT = os.path.join(APPS_DIR, 'media')

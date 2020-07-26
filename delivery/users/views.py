@@ -51,4 +51,4 @@ class UserViewSet(mixins.RetrieveModelMixin,mixins.UpdateModelMixin,viewsets.Gen
         data = UserModelSerializer(user).data
         return Response(data, status=status.HTTP_201_CREATED)
        
-     
+    
